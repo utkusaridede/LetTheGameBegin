@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
-* <h1>IOThingies Public Final Class</h1>
+* <h1>IOUtils Public Final Class</h1>
 * Public Final class to serve only its methods.
 * <p>
 * <b>Note:</b> Class for seperating IO operations
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 * @version 1.0
 * @since   2017-03-26
 */
-public final class IOThingies {
+public final class IOUtils {
 	
 	/**
 	 * Reading from file operation.
@@ -30,33 +30,31 @@ public final class IOThingies {
 	 */
 	public static void readFile(int argsLen, String[] args, ArrayList<String> lines) throws IllegalArgumentException{
 		
+		try {
+		
 		/*
 		 * We do want two arguments passed from command line.
 		 */
 		if (argsLen == 2){
 			
-			/*
-			 * Test for reading action
-			 */
-			try {
-				File input = new File(args[0]);
-				FileReader fileReader = new FileReader(input);
-				BufferedReader reader = new BufferedReader(fileReader);
-				
-				String line = null;
-				
-				while((line = reader.readLine()) != null){
-					if (line.length() > 0) lines.add(line);
-				}
-				reader.close();
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 			
+			File input = new File(args[0]);
+			FileReader fileReader = new FileReader(input);
+			BufferedReader reader = new BufferedReader(fileReader);
+			
+			String line = null;
+			
+			while((line = reader.readLine()) != null){
+				if (line.length() > 0) lines.add(line);
+			}
+			reader.close();
 		} else {
 			System.out.println("You should enter 2 file names from command prompt !");
-			throw new IllegalArgumentException();
+				throw new IllegalArgumentException();
+			}
+				
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -77,23 +75,11 @@ public final class IOThingies {
 			for(String line: arrList) {
 				writer.write(line + "\n");
 			}
+			
+		writer.close();
+		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		writer.close();
-	}
-	
-	/**
-	 * Allows program to get nth word in a string.
-	 * @param str whole sentence
-	 * @param n the order of word which program is looking for
-	 * @return the string of nth word or null for out of bound
-	 */
-	public static String getTheWord(String str, int n) {
-		
-		String[] tmp = str.split(" ");
-		if(n-1 < tmp.length) return tmp[n - 1];
-		return null;
 	}
 }

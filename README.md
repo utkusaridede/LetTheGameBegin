@@ -14,4 +14,4 @@ $ java <CLASS_FILE> <INPUT> <OUTPUT>
 
 Example input files are in the repository.
 
-Assumptions and more detailed explanation is in the project report, related javadoc files and inline comments.
+Assumptions and more detailed explanation are in the project report, related javadoc files and inline comments.

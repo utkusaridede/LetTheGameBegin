@@ -13,8 +13,8 @@ public class Enemy extends LivingCreature {
 	String name;
 	
 	/**
-	 * Constructor of Enemy Class to set 
-	 * name instance variable
+	 * Constructor of Enemy Class to set name
+	 * instance variable meanwhile it is created
 	 * @param enemyName name of the enemy
 	 */
 	public Enemy(String enemyName) {
@@ -25,6 +25,7 @@ public class Enemy extends LivingCreature {
 	/*
 	 * Protecting hp to have negative value.
 	 * Default: 100 for Enemy
+	 */
 	public void setHp(int hp){
 		if (hp > 0) {
 			this.hp = hp;
@@ -33,14 +34,15 @@ public class Enemy extends LivingCreature {
 		}
 	}
 	
-	 * Protecting attPow to have negative value.
+	/*
+	 * Protecting attackPower to have negative value.
 	 * Default: 8 for Enemy
-	public void setHp(int attPow){
-		if (attPow > 0) {
-			this.attPow = attPow;
+	 */
+	public void setAttackPower(int attackPower){
+		if (attackPower > 0) {
+			this.attackPower = attackPower;
 		} else {
-			this.attPow = 8;
+			this.attackPower = 8;
 		}
 	}
-	*/
 }

@@ -1,7 +1,7 @@
 package letTheGameBegin;
 
 /**
-* <h1>Living Creatures Abstract Class</h1>
+* <h1>LivingCreatures Abstract Class</h1>
 * The abstract class for all living creatures.
 * <p>
 * <b>Note:</b> It allows program to not create a LivingCreature
@@ -13,15 +13,8 @@ package letTheGameBegin;
 */
 public abstract class LivingCreature {
 	
-	private int hp;
-	private int attPow;
-	
-	/*
-	 * In the case of override of setting methods
-	 * as shown in the subclasses.
 	protected int hp;
-	protected int attPow;
-	*/
+	protected int attackPower;
 	
 	/**
 	 * Allows program to reach private hp instance variable
@@ -36,27 +29,21 @@ public abstract class LivingCreature {
 	 * Allows program to set private hp instance variable
 	 * @param hp the hp to set
 	 */
-	public void setHp(int hp) {
+	public void setHp(int hp) {}
+
+	/**
+	 * Allows program to reach private attackPower instance variable
+	 * @return the attackPower
+	 */
+	public int getAttackPower() {
 		
-		this.hp = hp;
+		return attackPower;
 	}
 
 	/**
-	 * Allows program to reach private attPow instance variable
-	 * @return the attPow
+	 * Allows program to set private attackPower instance variable
+	 * @param attackPower the attackPower to set
 	 */
-	public int getAttPow() {
-		
-		return attPow;
-	}
-
-	/**
-	 * Allows program to set private attPow instance variable
-	 * @param attPow the attPow to set
-	 */
-	public void setAttPow(int attPow) {
-		
-		this.attPow = attPow;
-	}
+	public void setAttackPower(int attackPower) {}
 	
 }
