@@ -26,7 +26,7 @@ public class IOThingies {
 				String line = null;
 				
 				while((line = reader.readLine()) != null){
-					lines.add(line);
+					if (line.length() > 0) lines.add(line);
 				}
 				reader.close();
 				
@@ -38,5 +38,12 @@ public class IOThingies {
 			System.out.println("You should enter 2 file names from command prompt !");
 			throw new IllegalArgumentException();
 		}
+	}
+	
+	final public static String getTheWord(String str, int n) {
+		
+		String[] tmp = str.split(" ");
+		if(n-1 < tmp.length) return tmp[n - 1];
+		return null;
 	}
 }
