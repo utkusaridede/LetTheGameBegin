@@ -38,14 +38,16 @@ public class InstictsOfSurvival {
 			}
 		}
 		
-		int counter = 0;
 		for (int i = numberOfEnemies + 3; i < numberOfEnemies * 3 + 2; i+=2){
-			
+			String whichEnemy = IOThingies.getTheWord((fileLines.get(i)), 1);
 			int enemyHp = Integer.parseInt(IOThingies.getTheWord((fileLines.get(i)), 3));
-			uniqueEnemies.get(counter).setHp(enemyHp);
 			int enemyAttPow = Integer.parseInt(IOThingies.getTheWord((fileLines.get(i+1)), 4));
-			uniqueEnemies.get(counter).setAttPow(enemyAttPow);
-			counter++;
+			for (Enemy enemy : uniqueEnemies){
+				if (enemy.name.equals(whichEnemy)){
+					enemy.setHp(enemyHp);
+					enemy.setAttPow(enemyAttPow);
+				}
+			}
 		}
 		
 		TreeMap <Integer, Enemy> enemiesOnTheMap = new TreeMap<Integer, Enemy>();
@@ -56,23 +58,18 @@ public class InstictsOfSurvival {
 			for (Enemy enemy : uniqueEnemies){
 				if (enemy.name.equals(whichEnemy)){
 					enemiesOnTheMap.put(possionOfEnemy, enemy);
-					System.out.println(enemiesOnTheMap.keySet());
 				}
 			}
 		}
 		
-		for(Map.Entry<Integer, Enemy> entry : enemiesOnTheMap.entrySet()) {
-			  Integer key = entry.getKey();
-			  Enemy value = entry.getValue();
-
-			  System.out.println(key + " => " + value);
-		}
-		
 		ArrayList<String> wholeStory = killEmAll(karacaOglan, enemiesOnTheMap);
+		
+		IOThingies.writeFile(wholeStory, args[1]);
 		
 		System.out.println(wholeStory);
 		
 	}
+	
 	public static ArrayList<String> killEmAll(Hero kog, TreeMap <Integer, Enemy> roadMap) {
 		
 		ArrayList<String> output = new ArrayList<String>();
@@ -88,22 +85,25 @@ public class InstictsOfSurvival {
 			int enemyHp = enemy.getHp();
 			int enemyAtt = enemy.getAttPow();
 			
+			System.out.println(enemy.name + ": " + enemy.getHp() + ", " + enemy.getAttPow());
+			
 			while (heroHp > 0 && enemyHp > 0) {
 				heroHp -= enemyAtt;
+				//System.out.println(heroHp);
 				enemyHp -= heroAtt;
 			}
 			
 			kog.setHp(heroHp);
 			
 			if (heroHp <= 0) {
-				output.add(enemy.name + "defeated Hero with " + enemyHp + " HP remaining.");
+				output.add(enemy.name + " defeated Hero with " + enemyHp + " HP remaining.");
 				output.add("Hero is Dead!! Last seen at position "+ position.intValue());
 				break;
 			} else {
 				output.add("Hero defeated " + enemy.name + " with " + heroHp + " HP remaining.");
 			}
 		}
-		output.add("Hero Survived.");
+		if(kog.getHp() > 0) output.add("Hero Survived.");
 		return output;
 	}
 }

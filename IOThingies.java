@@ -6,6 +6,8 @@ package letTheGameBegin;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -38,6 +40,22 @@ public class IOThingies {
 			System.out.println("You should enter 2 file names from command prompt !");
 			throw new IllegalArgumentException();
 		}
+	}
+	
+	final public static void writeFile(ArrayList<String> arrList, String out) throws IOException {
+		
+		FileWriter writer = new FileWriter(out);
+		
+		try {
+			for(String line: arrList) {
+				writer.write(line + "\n");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		writer.close();
 	}
 	
 	final public static String getTheWord(String str, int n) {
