@@ -1,6 +1,3 @@
-/**
- * 
- */
 package letTheGameBegin;
 
 import java.io.BufferedReader;
@@ -11,15 +8,36 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * @author utku
- *
- */
-public class IOThingies {
+* <h1>IOThingies Public Final Class</h1>
+* Public Final class to serve only its methods.
+* <p>
+* <b>Note:</b> Class for seperating IO operations
+* from class which have main method.
+*
+* @author  Utku Saridede
+* @version 1.0
+* @since   2017-03-26
+*/
+public final class IOThingies {
 	
-	final public static void readFile(int argsLen, String[] args, ArrayList<String> lines) throws IllegalArgumentException{
+	/**
+	 * Reading from file operation.
+	 * 
+	 * @param argsLen number of arguments passed through program
+	 * @param args arguments array
+	 * @param lines stores whole input
+	 * @throws IllegalArgumentException if number of arguments does not match with program
+	 */
+	public static void readFile(int argsLen, String[] args, ArrayList<String> lines) throws IllegalArgumentException{
 		
+		/*
+		 * We do want two arguments passed from command line.
+		 */
 		if (argsLen == 2){
 			
+			/*
+			 * Test for reading action
+			 */
 			try {
 				File input = new File(args[0]);
 				FileReader fileReader = new FileReader(input);
@@ -42,23 +60,37 @@ public class IOThingies {
 		}
 	}
 	
-	final public static void writeFile(ArrayList<String> arrList, String out) throws IOException {
+	/**
+	 * Writing to file operation
+	 * @param arrList whole story of output
+	 * @param out output file
+	 * @throws IOException if filewriter throw exception
+	 */
+	public static void writeFile(ArrayList<String> arrList, String out) throws IOException {
 		
 		FileWriter writer = new FileWriter(out);
 		
+		/*
+		 * Test for writing action
+		 */
 		try {
 			for(String line: arrList) {
 				writer.write(line + "\n");
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		writer.close();
 	}
 	
-	final public static String getTheWord(String str, int n) {
+	/**
+	 * Allows program to get nth word in a string.
+	 * @param str whole sentence
+	 * @param n the order of word which program is looking for
+	 * @return the string of nth word or null for out of bound
+	 */
+	public static String getTheWord(String str, int n) {
 		
 		String[] tmp = str.split(" ");
 		if(n-1 < tmp.length) return tmp[n - 1];
