@@ -2,6 +2,10 @@ package letTheGameBegin;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 public class InstictsOfSurvival {
 
@@ -46,21 +50,17 @@ public class InstictsOfSurvival {
 			counter++;
 		}
 		
-		ArrayList<Enemy> enemiesOnTheMap = new ArrayList<Enemy>();
+		TreeMap <Integer, Enemy> enemiesOnTheMap = new TreeMap<Integer, Enemy>();
 		
 		for (int i = numberOfEnemies * 3 + 3; i < fileLines.size(); i++){
 			String whichEnemy = IOThingies.getTheWord((fileLines.get(i)), 4);
 			int possionOfEnemy = Integer.parseInt(IOThingies.getTheWord((fileLines.get(i)), 7));
 			for (Enemy enemy : uniqueEnemies){
 				if (enemy.name.equals(whichEnemy)){
-					enemy.setPosition(possionOfEnemy);
-					enemiesOnTheMap.add(enemy);
+					enemiesOnTheMap.put(possionOfEnemy, enemy);
+					System.out.println(enemiesOnTheMap.keySet());
 				}
 			}
 		}
-		
-		System.out.println(enemiesOnTheMap.get(5).getPosition());
-		System.out.println(numberOfEnemies);
-		
 	}
 }

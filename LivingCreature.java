@@ -11,7 +11,6 @@ public abstract class LivingCreature {
 	
 	private int hp;
 	private int attPow;
-	private int position;
 	
 	/**
 	 * @return the hp
@@ -39,20 +38,6 @@ public abstract class LivingCreature {
 	 */
 	public void setAttPow(int attPow) {
 		this.attPow = attPow;
-	}
-
-	/**
-	 * @return the position
-	 */
-	public int getPosition() {
-		return position;
-	}
-
-	/**
-	 * @param position the position to set
-	 */
-	public void setPosition(int position) {
-		this.position = position;
 	}
 	
 }
