@@ -107,7 +107,7 @@ public class Hero extends LivingCreature {
 			}
 		}
 		// Checks whether hero is survived or not.
-		if(heroHpTemp > 0) output.add("Hero Survived.");
+		if(heroHpTemp > 0) output.add("Hero Survived!");
 		return output;
 	}
 }
