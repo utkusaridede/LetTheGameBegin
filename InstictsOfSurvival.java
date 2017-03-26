@@ -2,9 +2,7 @@ package letTheGameBegin;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
 public class InstictsOfSurvival {
@@ -62,5 +60,50 @@ public class InstictsOfSurvival {
 				}
 			}
 		}
+		
+		for(Map.Entry<Integer, Enemy> entry : enemiesOnTheMap.entrySet()) {
+			  Integer key = entry.getKey();
+			  Enemy value = entry.getValue();
+
+			  System.out.println(key + " => " + value);
+		}
+		
+		ArrayList<String> wholeStory = killEmAll(karacaOglan, enemiesOnTheMap);
+		
+		System.out.println(wholeStory);
+		
+	}
+	public static ArrayList<String> killEmAll(Hero kog, TreeMap <Integer, Enemy> roadMap) {
+		
+		ArrayList<String> output = new ArrayList<String>();
+		output.add("Hero started journey with " + kog.getHp() + "HP!");
+		
+		for(Map.Entry<Integer, Enemy> road :roadMap.entrySet()){
+			
+			Integer position = road.getKey();
+			Enemy enemy = (Enemy)road.getValue();
+			
+			int heroHp = kog.getHp();
+			int heroAtt = kog.getAttPow();
+			int enemyHp = enemy.getHp();
+			int enemyAtt = enemy.getAttPow();
+			
+			while (heroHp > 0 && enemyHp > 0) {
+				heroHp -= enemyAtt;
+				enemyHp -= heroAtt;
+			}
+			
+			kog.setHp(heroHp);
+			
+			if (heroHp <= 0) {
+				output.add(enemy.name + "defeated Hero with " + enemyHp + " HP remaining.");
+				output.add("Hero is Dead!! Last seen at position "+ position.intValue());
+				break;
+			} else {
+				output.add("Hero defeated " + enemy.name + " with " + heroHp + " HP remaining.");
+			}
+		}
+		output.add("Hero Survived.");
+		return output;
 	}
 }
