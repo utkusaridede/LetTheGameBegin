@@ -84,7 +84,7 @@ public class InstictsOfSurvival {
 		IOUtils.writeFile(wholeStory, args[1]);
 		
 		// Whole story might be seen in the command prompt.
-		System.out.println(wholeStory);
+		//System.out.println(wholeStory);
 		
 	}
 	
